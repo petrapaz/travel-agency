@@ -27,7 +27,7 @@ export default function TransfersPage() {
         <section className="container mx-auto px-6 py-20 text-center">
           <h2 className="text-4xl font-light text-gray-800 relative inline-block pb-2">
             Private Transfers
-            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/4 h-0.5 bg-orange-500"></span>
+            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-0.5 bg-orange-500"></span>
           </h2>
           <p className="text-gray-500 mt-4 max-w-2xl mx-auto">Enjoy a seamless journey across Croatia.</p>
         </section>

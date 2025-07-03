@@ -35,57 +35,57 @@ export default function Navbar() {
 
         {/* DESKTOP MENI */}
         <ul className="hidden md:flex space-x-8 text-sm">
-          <li>
-            <NavLink to="/">
-              {({ isActive }) => (
-                <div className={`relative group pb-2 ${isActive ? 'font-semibold' : 'font-light'}`}>
-                  <span>Home</span>
-                  <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
-                </div>
-              )}
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/day-tours">
-              {({ isActive }) => (
-                <div className={`relative group pb-2 ${isActive ? 'font-semibold' : 'font-light'}`}>
-                  <span>Day Tours</span>
-                  <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
-                </div>
-              )}
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/transfers">
-              {({ isActive }) => (
-                <div className={`relative group pb-2 ${isActive ? 'font-semibold' : 'font-light'}`}>
-                  <span>Transfers</span>
-                  <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
-                </div>
-              )}
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/about-us">
-              {({ isActive }) => (
-                <div className={`relative group pb-2 ${isActive ? 'font-semibold' : 'font-light'}`}>
-                  <span>About Us</span>
-                  <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
-                </div>
-              )}
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/contact-us">
-              {({ isActive }) => (
-                <div className={`relative group pb-2 ${isActive ? 'font-semibold' : 'font-light'}`}>
-                  <span>Contact Us</span>
-                  <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
-                </div>
-              )}
-            </NavLink>
-          </li>
-        </ul>
+  <li>
+    <NavLink to="/">
+      {({ isActive }) => (
+        <div className={`relative group pb-2 ${isActive ? 'font-semibold' : 'font-light'}`}>
+          <span>Home</span>
+          <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+        </div>
+      )}
+    </NavLink>
+  </li>
+  <li>
+    <NavLink to="/day-tours">
+      {({ isActive }) => (
+        <div className={`relative group pb-2 ${isActive ? 'font-semibold' : 'font-light'}`}>
+          <span>Day Tours</span>
+          <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+        </div>
+      )}
+    </NavLink>
+  </li>
+  <li>
+    <NavLink to="/transfers">
+      {({ isActive }) => (
+        <div className={`relative group pb-2 ${isActive ? 'font-semibold' : 'font-light'}`}>
+          <span>Transfers</span>
+          <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+        </div>
+      )}
+    </NavLink>
+  </li>
+  <li>
+    <NavLink to="/about-us">
+      {({ isActive }) => (
+        <div className={`relative group pb-2 ${isActive ? 'font-semibold' : 'font-light'}`}>
+          <span>About Us</span>
+          <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+        </div>
+      )}
+    </NavLink>
+  </li>
+  <li>
+    <NavLink to="/contact-us">
+      {({ isActive }) => (
+        <div className={`relative group pb-2 ${isActive ? 'font-semibold' : 'font-light'}`}>
+          <span>Contact Us</span>
+          <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+        </div>
+      )}
+    </NavLink>
+  </li>
+</ul>
 
         <div className="hidden md:block">
             <button className="bg-orange-500 hover:bg-orange-600 px-6 py-2 rounded-lg text-white text-sm font-medium transition-colors">

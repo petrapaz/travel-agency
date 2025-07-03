@@ -13,6 +13,10 @@ import DayTours from './pages/DayTours';
 import DayToursList from './pages/DayToursList';
 import TourDetailPage from './pages/TourDetailPage';
 import TransfersPage from './pages/TransfersPage';
+import TransfersResultsPage from './pages/TransfersResultsPage';
+import ReservationPage from './pages/ReservationPage';
+import BookingSuccessPage from './pages/BookingSuccessPage';
+import AboutUsPage from './pages/AboutUsPage';
 
 // Layout komponenta koja sadrži zajedničke elemente
 function Layout() {
@@ -39,6 +43,10 @@ function App() {
             <Route path="day-tours/offers" element={<DayToursList />} />
             <Route path="day-tours/tour/:tourId" element={<TourDetailPage />} />
             <Route path="transfers" element={<TransfersPage />} />
+            <Route path="transfers/results" element={<TransfersResultsPage />} />
+            <Route path="transfers/reserve" element={<ReservationPage />} />
+            <Route path="booking-success" element={<BookingSuccessPage />} /> 
+            <Route path="about-us" element={<AboutUsPage />} />
           </Route>
         </Routes>
       </div>

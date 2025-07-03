@@ -18,3 +18,12 @@
 .custom-dots li.slick-active button::before {
   color: #F97316 !important; /* Narančasta za aktivnu točkicu*/
 }
+
+.gallery-slider .slick-slide {
+  transform: scale(0.85); /* Sve slike su inicijalno smanjene */
+  transition: transform 0.4s ease-in-out;
+}
+
+.gallery-slider .slick-slide.slick-center {
+  transform: scale(1); /* Srednja (aktivna) slika se vraća na punu veličinu */
+}
