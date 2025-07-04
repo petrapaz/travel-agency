@@ -79,7 +79,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black opacity-50 z-10" />
       <div className="relative z-20 h-full flex items-center px-12 text-white max-w-4xl">
         <div>
-          <h1 className="font-playfair text-[84px] font-normal leading-tight mb-4">
+          <h1 className="font-playfair text-5xl sm:text-6xl lg:text-[84px] font-normal leading-tight mb-4">
             Start your unforgettable <br /> journey with us.
           </h1>
           <p className="text-lg">Organise your holiday the way you like.</p>

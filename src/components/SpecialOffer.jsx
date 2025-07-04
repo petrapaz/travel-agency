@@ -52,6 +52,8 @@ export default function SpecialOffer() {
         </div>
         
         {/* 7. Povezujemo 'ref' sa Slider komponentom */}
+          {/* ... naslov i strelice ... */}
+      <div className="-mx-2">
         <Slider ref={sliderRef} {...settings}>
             {offers.map((offer) => (
               <div key={offer.id} className="p-2">
@@ -74,6 +76,7 @@ export default function SpecialOffer() {
               </div>
             ))}
         </Slider>
+        </div>
       </div>
     </section>
   );

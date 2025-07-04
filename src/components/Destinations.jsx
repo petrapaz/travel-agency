@@ -61,23 +61,25 @@ export default function Destinations() {
       </div>
       
       {/* 5. Povezujemo 'ref' sa Slider komponentom */}
-      <Slider ref={sliderRef} {...settings}>
-        {destinations.map((dest) => (
-          <div key={dest.id} className="p-2">
-            <div className="relative h-96 rounded-xl overflow-hidden group shadow-lg">
-              <img src={dest.image} alt={dest.title} className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-              <div className="absolute bottom-0 left-0 p-6 text-white">
-                <h3 className="text-xl font-semibold">{dest.title}</h3>
-                <div className="flex items-center mt-2 text-sm">
-                  <IoLocationSharp />
-                  <span className="ml-1">{dest.location}</span>
+      <div className="-mx-2">
+        <Slider ref={sliderRef} {...settings}>
+          {destinations.map((dest) => (
+            <div key={dest.id} className="p-2">
+              <div className="relative h-96 rounded-xl overflow-hidden group shadow-lg">
+                <img src={dest.image} alt={dest.title} className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 p-6 text-white">
+                  <h3 className="text-xl font-semibold">{dest.title}</h3>
+                  <div className="flex items-center mt-2 text-sm">
+                    <IoLocationSharp />
+                    <span className="ml-1">{dest.location}</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-      </Slider>
+          ))}
+        </Slider>
+      </div>
     </section>
   );
 }

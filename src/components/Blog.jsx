@@ -68,6 +68,7 @@ export default function Blog() {
         </div>
 
         {/* 7. Grid u Slider */}
+      <div className="-mx-2">
         <Slider ref={sliderRef} {...settings}>
           {blogPosts.map((post) => (
             <div key={post.id} className="p-2">
@@ -86,6 +87,7 @@ export default function Blog() {
             </div>
           ))}
         </Slider>
+      </div>
       </div>
     </section>
   );

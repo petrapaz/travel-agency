@@ -65,7 +65,7 @@ export default function DayTours() {
         <div className="absolute inset-0 bg-black opacity-50 z-10" />
         <div className="relative z-20 h-full flex items-center px-12 text-white max-w-4xl">
           <div>
-            <h1 className="font-playfair text-[84px] font-normal leading-tight mb-4">
+            <h1 className="font-playfair text-5xl md:text-[84px] font-normal leading-tight mb-4">
               Explore Croatia and <br/> near-by attractions.
             </h1>
             <p className="text-lg">Use our one day tours to explore multiple locations.</p>

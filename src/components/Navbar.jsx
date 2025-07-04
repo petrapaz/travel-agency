@@ -27,65 +27,65 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 w-full z-30 flex justify-between items-center px-6 md:px-12 py-5 transition-all duration-300 ${navbarBg} ${textColor}`}>
+      <nav className={`fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-5 transition-all duration-300 ${navbarBg} ${textColor}`}>
         
         <Link to="/" className="text-xl font-semibold uppercase tracking-wider">
           Travel Agency
         </Link>
 
-        {/* DESKTOP MENI */}
+        {/* Desktop Meni */}
         <ul className="hidden md:flex space-x-8 text-sm">
-  <li>
-    <NavLink to="/">
-      {({ isActive }) => (
-        <div className={`relative group pb-2 ${isActive ? 'font-semibold' : 'font-light'}`}>
-          <span>Home</span>
-          <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
-        </div>
-      )}
-    </NavLink>
-  </li>
-  <li>
-    <NavLink to="/day-tours">
-      {({ isActive }) => (
-        <div className={`relative group pb-2 ${isActive ? 'font-semibold' : 'font-light'}`}>
-          <span>Day Tours</span>
-          <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
-        </div>
-      )}
-    </NavLink>
-  </li>
-  <li>
-    <NavLink to="/transfers">
-      {({ isActive }) => (
-        <div className={`relative group pb-2 ${isActive ? 'font-semibold' : 'font-light'}`}>
-          <span>Transfers</span>
-          <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
-        </div>
-      )}
-    </NavLink>
-  </li>
-  <li>
-    <NavLink to="/about-us">
-      {({ isActive }) => (
-        <div className={`relative group pb-2 ${isActive ? 'font-semibold' : 'font-light'}`}>
-          <span>About Us</span>
-          <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
-        </div>
-      )}
-    </NavLink>
-  </li>
-  <li>
-    <NavLink to="/contact-us">
-      {({ isActive }) => (
-        <div className={`relative group pb-2 ${isActive ? 'font-semibold' : 'font-light'}`}>
-          <span>Contact Us</span>
-          <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
-        </div>
-      )}
-    </NavLink>
-  </li>
-</ul>
+          <li>
+            <NavLink to="/">
+              {({ isActive }) => (
+                <div className={`relative group pb-2 ${isActive ? 'font-semibold' : 'font-light'}`}>
+                  <span>Home</span>
+                  <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+                </div>
+              )}
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/day-tours">
+              {({ isActive }) => (
+                <div className={`relative group pb-2 ${isActive ? 'font-semibold' : 'font-light'}`}>
+                  <span>Day Tours</span>
+                  <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+                </div>
+              )}
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/transfers">
+              {({ isActive }) => (
+                <div className={`relative group pb-2 ${isActive ? 'font-semibold' : 'font-light'}`}>
+                  <span>Transfers</span>
+                  <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+                </div>
+              )}
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/about-us">
+              {({ isActive }) => (
+                <div className={`relative group pb-2 ${isActive ? 'font-semibold' : 'font-light'}`}>
+                  <span>About Us</span>
+                  <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+                </div>
+              )}
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/contact-us">
+              {({ isActive }) => (
+                <div className={`relative group pb-2 ${isActive ? 'font-semibold' : 'font-light'}`}>
+                  <span>Contact Us</span>
+                  <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+                </div>
+              )}
+            </NavLink>
+          </li>
+        </ul>
 
         <div className="hidden md:block">
             <button className="bg-orange-500 hover:bg-orange-600 px-6 py-2 rounded-lg text-white text-sm font-medium transition-colors">
@@ -93,16 +93,17 @@ export default function Navbar() {
             </button>
         </div>
 
-        <div onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden z-40 cursor-pointer">
+        {/* Burger Ikonica sada ima z-50 da bude iznad svega */}
+        <div onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden cursor-pointer">
           {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </div>
       </nav>
 
-      {/* Mobilni meni */}
+      {/* --- MOBILNI MENI - ISPRAVLJENO --- */}
       <div className={
         isMenuOpen 
-        ? 'md:hidden fixed top-0 left-0 w-full h-screen bg-[#1D2C38] z-20 flex flex-col justify-center items-center transition-all duration-300 ease-in-out'
-        : 'md:hidden fixed top-0 left-[-100%] w-full h-screen bg-[#1D2C38] z-20 flex flex-col justify-center items-center transition-all duration-300 ease-in-out'
+        ? 'md:hidden fixed inset-0 bg-[#1D2C38] z-40 flex flex-col justify-center items-center'
+        : 'md:hidden fixed top-0 left-[-100%] w-full h-screen'
       }>
         <ul className="text-white text-center">
           <li className="py-4 text-2xl"><Link to="/" onClick={closeMenu}>Home</Link></li>
