@@ -17,6 +17,7 @@ import TransfersResultsPage from './pages/TransfersResultsPage';
 import ReservationPage from './pages/ReservationPage';
 import BookingSuccessPage from './pages/BookingSuccessPage';
 import AboutUsPage from './pages/AboutUsPage';
+import ContactUsPage from './pages/ContactUsPage';
 
 // Layout komponenta koja sadrži zajedničke elemente
 function Layout() {
@@ -47,6 +48,7 @@ function App() {
             <Route path="transfers/reserve" element={<ReservationPage />} />
             <Route path="booking-success" element={<BookingSuccessPage />} /> 
             <Route path="about-us" element={<AboutUsPage />} />
+            <Route path="contact-us" element={<ContactUsPage />} />
           </Route>
         </Routes>
       </div>
