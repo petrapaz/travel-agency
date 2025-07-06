@@ -4,30 +4,22 @@ import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import { NextArrow, PrevArrow } from '../components/SliderArrows';
 import { IoLocationSharp } from 'react-icons/io5';
+import { toursData } from '../data/tours'; // 1. Importiramo centralizirane podatke
 
-// Import slika
+// Import slika za stranicu
 import heroImg1 from '../assets/images/plitvice.jpg';
 import heroImg2 from '../assets/images/krka.jpg';
 import heroImg3 from '../assets/images/sunset.jpg';
 import imgExplore from '../assets/images/wine-tasting.jpg';
 import imgOrganise from '../assets/images/pula.jpg';
-import imgDubrovnik from '../assets/images/dubrovnik-roof.jpg';
-import imgIslands from '../assets/images/jedrilice.jpg';
-import imgMostar from '../assets/images/mostar.jpg';
-import imgTrogir from '../assets/images/trogir.jpg';
 
-
-const tourOffers = [
-  { id: 1, title: 'Dubrovnik old town', location: 'Dubrovnik, Croatia', image: imgDubrovnik, link: '/day-tours/dubrovnik-old-town' },
-  { id: 2, title: 'Islands Tour', location: 'Dalmatia, Croatia', image: imgIslands, link: '/day-tours/islands-tour' },
-  { id: 3, title: 'Old bridge Mostar', location: 'Mostar, BiH', image: imgMostar, link: '/day-tours/mostar' },
-  { id: 4, title: 'Trogir Promenade', location: 'Trogir, Croatia', image: imgTrogir, link: '/day-tours/trogir' },
-];
-
+// 2. Koristimo prvih 8 tura iz centraliziranih podataka za donji slider
+const tourOffers = toursData.slice(0, 8);
 
 export default function DayTours() {
   const offerSliderRef = useRef(null);
 
+  // Postavke za hero slider
   const heroSliderSettings = {
     dots: false,
     arrows: false,
@@ -40,6 +32,7 @@ export default function DayTours() {
     slidesToScroll: 1,
   };
   
+  // Postavke za donji slider
   const offerSliderSettings = {
     dots: false,
     infinite: true,
@@ -65,7 +58,7 @@ export default function DayTours() {
         <div className="absolute inset-0 bg-black opacity-50 z-10" />
         <div className="relative z-20 h-full flex items-center px-12 text-white max-w-4xl">
           <div>
-            <h1 className="font-playfair text-5xl md:text-[84px] font-normal leading-tight mb-4">
+            <h1 className="font-playfair text-5xl sm:text-6xl lg:text-[84px] font-normal leading-tight mb-4">
               Explore Croatia and <br/> near-by attractions.
             </h1>
             <p className="text-lg">Use our one day tours to explore multiple locations.</p>
@@ -74,8 +67,9 @@ export default function DayTours() {
       </section>
 
       <div className="bg-white">
+        {/* ... Ovdje ide ostatak sadržaja stranice ... */}
         <section className="container mx-auto px-6 py-20 text-left">
-          <h2 className="text-4xl font-light text-gray-800 relative inline-block pb-2">Day Tours<span className="absolute bottom-0 left-0 w-3/4 h-0.5 bg-orange-500"></span></h2>
+          <h2 className="text-4xl font-light text-gray-800 relative inline-block pb-2">Day Tours<span className="absolute bottom-0 left-0 w-1/4 h-0.5 bg-orange-500"></span></h2>
           <p className="text-gray-500 mt-4 max-w-2xl text-lg">An insight into the incredible experience around Croatia.</p>
         </section>
 
@@ -111,20 +105,23 @@ export default function DayTours() {
                        <NextArrow onClick={() => offerSliderRef.current.slickNext()} />
                   </div>
               </div>
-              <Slider ref={offerSliderRef} {...offerSliderSettings}>
-                  {tourOffers.map((dest) => (
-                    <Link to={dest.link} key={dest.id} className="p-2 block">
-                        <div className="relative h-80 rounded-xl overflow-hidden group shadow-lg">
-                            <img src={dest.image} alt={dest.title} className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                            <div className="absolute bottom-0 left-0 p-6 text-white">
-                                <h3 className="text-xl font-semibold">{dest.title}</h3>
-                                <div className="flex items-center mt-2 text-sm"><IoLocationSharp /><span className="ml-1">{dest.location}</span></div>
-                            </div>
-                        </div>
-                    </Link>
-                  ))}
-              </Slider>
+              <div className="-mx-2">
+                <Slider ref={offerSliderRef} {...offerSliderSettings}>
+                    {tourOffers.map((dest) => (
+                      // 3. ISPRAVAK: Link sada koristi ispravnu putanju
+                      <Link to={`/day-tours/tour/${dest.id}`} key={dest.id} className="p-2 block">
+                          <div className="relative h-80 rounded-xl overflow-hidden group shadow-lg">
+                              <img src={dest.image} alt={dest.title} className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                              <div className="absolute bottom-0 left-0 p-6 text-white">
+                                  <h3 className="text-xl font-semibold">{dest.title}</h3>
+                                  <div className="flex items-center mt-2 text-sm"><IoLocationSharp /><span className="ml-1">{dest.location}</span></div>
+                              </div>
+                          </div>
+                      </Link>
+                    ))}
+                </Slider>
+              </div>
           </div>
       </section>
     </>

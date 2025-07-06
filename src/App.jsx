@@ -1,11 +1,12 @@
 // src/App.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 
 // Import zajedničkih komponenti
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import BackToTopButton from './components/BackToTopButton';
+import BookingModal from './components/BookingModal';
 
 // Import stranica
 import Home from './pages/Home';
@@ -18,12 +19,13 @@ import ReservationPage from './pages/ReservationPage';
 import BookingSuccessPage from './pages/BookingSuccessPage';
 import AboutUsPage from './pages/AboutUsPage';
 import ContactUsPage from './pages/ContactUsPage';
+import BlogPostPage from './pages/BlogPostPage'; // Provjerite je li ovaj import tu
 
-// Layout komponenta koja sadrži zajedničke elemente
-function Layout() {
+// Layout komponenta
+function Layout({ onBookNowClick }) {
   return (
     <>
-      <Navbar />
+      <Navbar onBookNowClick={onBookNowClick} />
       <main>
         <Outlet />
       </main>
@@ -34,24 +36,34 @@ function Layout() {
 }
 
 function App() {
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+
   return (
     <BrowserRouter>
       <div className="font-sans bg-gray-100">
         <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} /> 
+          <Route path="/" element={<Layout onBookNowClick={() => setIsBookingModalOpen(true)} />}>
+            <Route index element={<Home />} />
             <Route path="day-tours" element={<DayTours />} />
             <Route path="day-tours/offers" element={<DayToursList />} />
             <Route path="day-tours/tour/:tourId" element={<TourDetailPage />} />
             <Route path="transfers" element={<TransfersPage />} />
             <Route path="transfers/results" element={<TransfersResultsPage />} />
             <Route path="transfers/reserve" element={<ReservationPage />} />
-            <Route path="booking-success" element={<BookingSuccessPage />} /> 
+            <Route path="booking-success" element={<BookingSuccessPage />} />
             <Route path="about-us" element={<AboutUsPage />} />
             <Route path="contact-us" element={<ContactUsPage />} />
+
+            {/* === OVA RUTA JE KLJUČNA ZA ISPRAVAK === */}
+            <Route path="blog/:postId" element={<BlogPostPage />} />
+
           </Route>
         </Routes>
       </div>
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+      />
     </BrowserRouter>
   );
 }

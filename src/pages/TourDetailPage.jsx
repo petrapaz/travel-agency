@@ -3,15 +3,15 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { toursData } from '../data/tours';
 import Slider from 'react-slick';
-import { NextArrow, PrevArrow } from '../components/SliderArrows'; // Novi import za strelice
+import { NextArrow, PrevArrow } from '../components/SliderArrows';
 
 export default function TourDetailPage() {
   const { tourId } = useParams();
   const tour = toursData.find(t => t.id === tourId);
 
-const settings = {
+  const settings = {
     dots: true,
-    arrows: false, // isključujemo strelice
+    arrows: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -33,17 +33,20 @@ const settings = {
 
   return (
     <>
-      <section className="h-[60vh] relative">
+      <section className="h-[50vh] relative">
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${tour.image})` }}></div>
         <div className="absolute inset-0 bg-black opacity-50"></div>
-        <div className="relative h-full flex items-center justify-center text-white text-center px-4">
+        <div className="relative h-full flex items-center justify-center text-white text-center px-6">
+          {/* ISPRAVAK: Smanjen font za mobilne uređaje */}
           <h1 className="font-playfair text-4xl md:text-6xl font-bold">{tour.title}</h1>
         </div>
       </section>
 
       <div className="bg-white">
-        <div className="container mx-auto px-6 py-16">
-          <div className="grid md:grid-cols-3 gap-12">
+        {/* ISPRAVAK: Poboljšan kontejner i responzivni razmaci */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            
             <div className="md:col-span-2">
               <h2 className="text-3xl font-light text-gray-800 mb-4">Tour Description</h2>
               <p className="text-gray-600 text-lg whitespace-pre-line leading-relaxed">{tour.description}</p>
@@ -55,7 +58,7 @@ const settings = {
                     <Slider {...settings}>
                       {tour.gallery.map((img, index) => (
                         <div key={index}>
-                          <img src={img} alt={`${tour.title} gallery image ${index + 1}`} className="w-full h-96 object-cover"/>
+                          <img src={img} alt={`${tour.title} gallery image ${index + 1}`} className="w-full h-80 md:h-96 object-cover"/>
                         </div>
                       ))}
                     </Slider>
@@ -69,7 +72,6 @@ const settings = {
                 <h3 className="text-2xl font-semibold text-gray-800 border-b pb-4">Tour Summary</h3>
                 <ul className="space-y-4 my-6 text-gray-700">
                   <li className="flex justify-between"><strong>Duration:</strong> <span>{tour.duration}</span></li>
-                  <li className="flex justify-between"><strong>Available:</strong> <span>{tour.available ?? 'N/A'}</span></li>
                   <li className="flex justify-between"><strong>Departure:</strong> <span>{tour.departure}</span></li>
                 </ul>
                 <div className="text-sm text-gray-700 space-y-2 mb-6">
@@ -82,6 +84,7 @@ const settings = {
                 <button className="mt-6 w-full bg-orange-500 text-white py-3 rounded-lg font-bold text-lg hover:bg-orange-600 transition-colors">BOOK NOW</button>
               </div>
             </div>
+
           </div>
         </div>
       </div>

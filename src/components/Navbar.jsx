@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
-export default function Navbar() {
+// Navbar sada prima 'onBookNowClick' prop iz App.jsx
+export default function Navbar({ onBookNowClick }) {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -23,7 +24,10 @@ export default function Navbar() {
   
   const textColor = 'text-white'; 
 
-  const closeMenu = () => setIsMenuOpen(false);
+  const closeMenuAndBook = () => {
+    setIsMenuOpen(false);
+    onBookNowClick();
+  };
 
   return (
     <>
@@ -88,31 +92,33 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden md:block">
-            <button className="bg-orange-500 hover:bg-orange-600 px-6 py-2 rounded-lg text-white text-sm font-medium transition-colors">
+            {/* Gumb sada poziva onBookNowClick funkciju */}
+            <button onClick={onBookNowClick} className="bg-orange-500 hover:bg-orange-600 px-6 py-2 rounded-lg text-white text-sm font-medium transition-colors">
                 Book Now
             </button>
         </div>
 
-        {/* Burger Ikonica sada ima z-50 da bude iznad svega */}
+        {/* Burger Ikonica */}
         <div onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden cursor-pointer">
           {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </div>
       </nav>
 
-      {/* --- MOBILNI MENI - ISPRAVLJENO --- */}
+      {/* Mobilni Meni */}
       <div className={
         isMenuOpen 
         ? 'md:hidden fixed inset-0 bg-[#1D2C38] z-40 flex flex-col justify-center items-center'
-        : 'md:hidden fixed top-0 left-[-100%] w-full h-screen'
+        : 'md:hidden fixed top-0 left-[-100%]'
       }>
         <ul className="text-white text-center">
-          <li className="py-4 text-2xl"><Link to="/" onClick={closeMenu}>Home</Link></li>
-          <li className="py-4 text-2xl"><Link to="/day-tours" onClick={closeMenu}>Day Tours</Link></li>
-          <li className="py-4 text-2xl"><Link to="/transfers" onClick={closeMenu}>Transfers</Link></li>
-          <li className="py-4 text-2xl"><Link to="/about-us" onClick={closeMenu}>About Us</Link></li>
-          <li className="py-4 text-2xl"><Link to="/contact-us" onClick={closeMenu}>Contact Us</Link></li>
+          <li className="py-4 text-2xl"><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
+          <li className="py-4 text-2xl"><Link to="/day-tours" onClick={() => setIsMenuOpen(false)}>Day Tours</Link></li>
+          <li className="py-4 text-2xl"><Link to="/transfers" onClick={() => setIsMenuOpen(false)}>Transfers</Link></li>
+          <li className="py-4 text-2xl"><Link to="/about-us" onClick={() => setIsMenuOpen(false)}>About Us</Link></li>
+          <li className="py-4 text-2xl"><Link to="/contact-us" onClick={() => setIsMenuOpen(false)}>Contact Us</Link></li>
         </ul>
-        <button className="bg-orange-500 hover:bg-orange-600 px-8 py-3 rounded-lg text-white mt-8">
+        {/* Gumb u mobilnom meniju također poziva onBookNowClick i zatvara meni */}
+        <button onClick={closeMenuAndBook} className="bg-orange-500 hover:bg-orange-600 px-8 py-3 rounded-lg text-white mt-8">
             Book Now
         </button>
       </div>
