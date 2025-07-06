@@ -17,7 +17,6 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* 2. AŽURIRANI LINKOVI U MENIJU */}
         <div>
           <h3 className="font-semibold mb-4">Menu</h3>
           <ul className="space-y-2 text-gray-300 font-light">

@@ -19,7 +19,7 @@ import ReservationPage from './pages/ReservationPage';
 import BookingSuccessPage from './pages/BookingSuccessPage';
 import AboutUsPage from './pages/AboutUsPage';
 import ContactUsPage from './pages/ContactUsPage';
-import BlogPostPage from './pages/BlogPostPage'; // Provjerite je li ovaj import tu
+import BlogPostPage from './pages/BlogPostPage';
 
 // Layout komponenta
 function Layout({ onBookNowClick }) {
@@ -53,8 +53,6 @@ function App() {
             <Route path="booking-success" element={<BookingSuccessPage />} />
             <Route path="about-us" element={<AboutUsPage />} />
             <Route path="contact-us" element={<ContactUsPage />} />
-
-            {/* === OVA RUTA JE KLJUČNA ZA ISPRAVAK === */}
             <Route path="blog/:postId" element={<BlogPostPage />} />
 
           </Route>

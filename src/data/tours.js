@@ -1,6 +1,6 @@
 // src/data/tours.js
 
-// Importiramo sve potrebne slike
+//sve potrebne slike
 import imgDalmatiaTour from '../assets/images/split.jpg';
 import imgBracTour from '../assets/images/brač.jpg';
 import imgDubrovnikTour from '../assets/images/dubrovnik-roof.jpg';
