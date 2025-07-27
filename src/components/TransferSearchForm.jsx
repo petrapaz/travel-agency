@@ -47,9 +47,20 @@ function LocationCombobox({ label, locations, value, onChange }) {
 
 
 export default function TransferSearchForm() {
+
+  // funkcija za formatiranje datuma u YYYY-MM-DD format
+  const getTodayString = () => {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); // mjeseci su 0-indeksirani
+    const dd = String(today.getDate()).padStart(2, '0');
+    return `${yyyy}-${mm}-${dd}`;
+  };
+
   const [fromLocation, setFromLocation] = useState('Split zračna luka');
   const [toLocation, setToLocation] = useState('Vinišće');
   const [persons, setPersons] = useState(2);
+  const [date, setDate] = useState(getTodayString()); // postavljanje današnjeg datuma
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -66,7 +77,8 @@ export default function TransferSearchForm() {
           results: results,
           from: fromLocation,
           to: toLocation,
-          pax: persons 
+          pax: persons,
+          date: date // slanje odabranog datuma na stranicu s rezultatima
         } 
       });
     } else {
@@ -91,7 +103,15 @@ export default function TransferSearchForm() {
         
         <div className="relative">
            <label htmlFor="date" className="block text-xs font-bold text-gray-500 uppercase">Date</label>
-           <input type="date" id="date" className="w-full mt-1 p-2 border-b-2 border-gray-200 focus:outline-none focus:border-orange-500"/>
+           {/* ažurirani input za datum */}
+           <input 
+              type="date" 
+              id="date"
+              value={date}
+              min={getTodayString()} // onemogućuje odabir prošlih datuma
+              onChange={(e) => setDate(e.target.value)}
+              className="w-full mt-1 p-2 border-b-2 border-gray-200 focus:outline-none focus:border-orange-500"
+            />
         </div>
         
         <div className="md:col-span-1">

@@ -38,7 +38,6 @@ export default function TransfersPage() {
           </div>
           <div className="text-left">
             <h3 className="text-3xl font-light text-gray-800 mb-4">Your Journey, Your Schedule</h3>
-            {/* ISPRAVAK: Ažuriran i proširen tekst */}
             <div className="space-y-4 text-gray-600 text-lg leading-relaxed">
               <p>Traveling through Croatia has never been easier with private transfer services tailored to your schedule, group size, and destination. Whether you’re arriving at the airport, traveling between coastal towns, or planning day trips inland, a private transfer ensures a smooth, stress-free journey.</p>
               <p>With door-to-door pickup, comfortable air-conditioned vehicles, and English-speaking drivers, private transfers offer flexibility that public transport can’t match. You set the time, we handle the rest—no waiting, no crowds, and no hauling luggage through bus stations.</p>
@@ -53,7 +52,6 @@ export default function TransfersPage() {
           </div>
           <div className="md:order-1 text-left">
             <h3 className="text-3xl font-light text-gray-800 mb-4">Fast, Flexible, and Stress-Free</h3>
-            {/* ISPRAVAK: Ažuriran i proširen tekst */}
             <div className="space-y-4 text-gray-600 text-lg leading-relaxed">
               <p>When you choose a private transfer in Croatia, you’re choosing travel that’s fast, flexible, and completely stress-free. No waiting in long taxi lines or navigating public transport with luggage—your driver picks you up on time, wherever you are, and takes you directly to your destination.</p>
               <p>Whether you’re arriving late at night, traveling with children, or exploring multiple towns in one day, private transfers adapt to your needs. With fixed pricing, comfortable vehicles, and experienced local drivers, you can relax and enjoy the journey—your time in Croatia should be effortless from start to finish.</p>

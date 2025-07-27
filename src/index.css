@@ -27,3 +27,8 @@
 .gallery-slider .slick-slide.slick-center {
   transform: scale(1); /* Srednja (aktivna) slika se vraća na punu veličinu */
 }
+
+/* Ispravak za duple strelice u react-slick slideru - strelice su uduplane zbog react script koji ih već u sebi ima */
+.custom-slick-arrow::before {
+  content: '' !important;
+}

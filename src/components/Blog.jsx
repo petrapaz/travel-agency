@@ -28,7 +28,7 @@ export default function Blog() {
       <div className="container mx-auto px-6">
         <div className="text-left mb-8">
           <h2 className="text-4xl font-light text-gray-800 relative inline-block pb-2">Our Blog
-            <span className="absolute bottom-0 left-0 w-1/4 h-0.5 bg-orange-500"></span>
+            <span className="absolute bottom-0 left-0 w-3/4 h-0.5 bg-orange-500"></span>
           </h2>
           <p className="text-gray-500 mt-4">An insight into the incredible experience around Croatia.</p>
         </div>
