@@ -1,32 +1,26 @@
 // src/components/Destinations.jsx
-import React, { useRef } from 'react'; // 1. Importiramo 'useRef' za ručnu kontrolu slidera
+import React, { useRef } from 'react';
 import Slider from 'react-slick';
 import { IoLocationSharp } from 'react-icons/io5';
-import { NextArrow, PrevArrow } from './SliderArrows'; // Importiramo redizajnirane strelice
+import { NextArrow, PrevArrow } from './SliderArrows';
 
-// Import slika
-import imgDubrovnik from '../assets/images/dubrovnik-roof.jpg';
-import imgIslands from '../assets/images/jedrilice.jpg';
-import imgKrka from '../assets/images/krka.jpg';
-import imgPrimosten from '../assets/images/primosten.jpg';
-import imgPula from '../assets/images/pula.jpg';
-import imgZadar from '../assets/images/zadar.jpg';
-import imgMostar from '../assets/images/mostar.jpg';
-import imgTrogir from '../assets/images/trogir.jpg';
+//Uklonjeni su svi 'import'-i za slike. 
+// slike se sada učitavaju direktno iz 'public' foldera.
 
+// Ažurirane putanje do slika
 const destinations = [
-  { id: 1, title: 'Dubrovnik old town', location: 'Dubrovnik, Croatia', image: imgDubrovnik },
-  { id: 2, title: 'Islands Tour', location: 'Dalmatia, Croatia', image: imgIslands },
-  { id: 3, title: 'Krka National Park', location: 'Dalmatia, Croatia', image: imgKrka },
-  { id: 4, title: 'Primošten', location: 'Dalmatia, Croatia', image: imgPrimosten },
-  { id: 5, title: 'Pula Arena', location: 'Pula, Croatia', image: imgPula },
-  { id: 6, title: 'Greetings from Zadar', location: 'Zadar, Croatia', image: imgZadar },
-  { id: 7, title: 'Old bridge Mostar', location: 'Mostar, BiH', image: imgMostar },
-  { id: 8, title: 'Trogir Promenade', location: 'Trogir, Croatia', image: imgTrogir },
+  { id: 1, title: 'Dubrovnik old town', location: 'Dubrovnik, Croatia', image: '/images/dubrovnik-roof.webp' },
+  { id: 2, title: 'Islands Tour', location: 'Dalmatia, Croatia', image: '/images/jedrilice.webp' },
+  { id: 3, title: 'Krka National Park', location: 'Dalmatia, Croatia', image: '/images/krka.webp' },
+  { id: 4, title: 'Primošten', location: 'Dalmatia, Croatia', image: '/images/primosten.webp' },
+  { id: 5, title: 'Pula Arena', location: 'Pula, Croatia', image: '/images/pula.webp' },
+  { id: 6, title: 'Greetings from Zadar', location: 'Zadar, Croatia', image: '/images/zadar.webp' },
+  { id: 7, title: 'Old bridge Mostar', location: 'Mostar, BiH', image: '/images/mostar.webp' },
+  { id: 8, title: 'Trogir Promenade', location: 'Trogir, Croatia', image: '/images/trogir.webp' },
 ];
 
 export default function Destinations() {
-  const sliderRef = useRef(null); // 2. Kreiramo referencu na slider
+  const sliderRef = useRef(null);
 
   const settings = {
     dots: false,
@@ -34,7 +28,7 @@ export default function Destinations() {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    arrows: false, // 3. U postavkama gasimo defaultne strelice
+    arrows: false,
     responsive: [
       { breakpoint: 1024, settings: { slidesToShow: 3 } },
       { breakpoint: 600, settings: { slidesToShow: 2 } },
@@ -44,7 +38,6 @@ export default function Destinations() {
 
   return (
     <section className="container mx-auto px-6 py-20">
-      {/* 4. AŽURIRANI BLOK: Naslov s linijom lijevo, strelice desno */}
       <div className="flex justify-between items-end mb-8">
         <div className="text-left">
           <h2 className="text-4xl font-light text-gray-800 relative inline-block pb-2">
@@ -60,13 +53,18 @@ export default function Destinations() {
         </div>
       </div>
       
-      {/* 5. Povezujemo 'ref' sa Slider komponentom */}
       <div className="-mx-2">
         <Slider ref={sliderRef} {...settings}>
           {destinations.map((dest) => (
             <div key={dest.id} className="p-2">
               <div className="relative h-96 rounded-xl overflow-hidden group shadow-lg">
-                <img src={dest.image} alt={dest.title} className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" />
+                {/* 'loading="lazy"' atribut za bolje performanse */}
+                <img 
+                  src={dest.image} 
+                  alt={dest.title} 
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 p-6 text-white">
                   <h3 className="text-xl font-semibold">{dest.title}</h3>

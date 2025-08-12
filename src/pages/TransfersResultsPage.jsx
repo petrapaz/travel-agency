@@ -1,26 +1,23 @@
 // src/pages/TransfersResultsPage.jsx
 import React from 'react';
-import { useLocation, Link, useNavigate } from 'react-router-dom'; // 1. Importiramo useNavigate hook
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 
-// Import slika vozila
-import imgCar from '../assets/images/mercedes.jpg';
-import imgVan from '../assets/images/sprinter.jpg';
-import imgMinibus from '../assets/images/auto.jpg';
+//Uklonjeni su 'import'-i za slike, definiramo ih kao stringove s .webp putanjama
+const imgCar = '/images/mercedes.webp';
+const imgVan = '/images/sprinter.webp';
+const imgMinibus = '/images/auto.webp';
 
 export default function TransfersResultsPage() {
   const location = useLocation();
-  const navigate = useNavigate(); // 2. initialize hook
-  const { results, from, to, pax, date } = location.state || {}; //dohvati podatke
+  const navigate = useNavigate();
+  const { results, from, to, pax, date } = location.state || {};
 
-  // 3. funkcija koja se poziva klikom na gumb
   const handleReserveClick = (vehicle, price) => {
-    // Navigacija na stranicu za rezervaciju i slanje podataka..
     navigate('/transfers/reserve', {
       state: { vehicle, price, from, to, pax, date }
     });
   };
 
-  // Ako nema rezultata, prikaži poruku
   if (!results) {
     return (
       <div className="pt-32 text-center h-screen">
@@ -41,7 +38,8 @@ export default function TransfersResultsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           {/* CAR Card */}
           <div className="bg-gray-50 rounded-lg shadow-md overflow-hidden">
-            <img src={imgCar} alt="Car" className="w-full h-56 object-cover" />
+            {/* 'loading="lazy"' */}
+            <img src={imgCar} alt="Car" className="w-full h-56 object-cover" loading="lazy" />
             <div className="p-6">
               <h3 className="text-2xl font-semibold">CAR</h3>
               <p className="text-gray-500">Maximum capacity: 3 person</p>
@@ -50,7 +48,6 @@ export default function TransfersResultsPage() {
                   <span className="text-gray-500 text-sm">From</span>
                   <p className="text-4xl font-bold text-gray-800">€{results.carPrice}</p>
                 </div>
-                {/* 4. Povezivanje funkcije s gumbom putem onClick-a */}
                 <button onClick={() => handleReserveClick('Car', results.carPrice)} className="bg-orange-500 text-white px-6 py-2 rounded-md hover:bg-orange-600 font-semibold">RESERVE</button>
               </div>
             </div>
@@ -58,7 +55,8 @@ export default function TransfersResultsPage() {
 
           {/* VAN Card */}
           <div className="bg-gray-50 rounded-lg shadow-md overflow-hidden">
-            <img src={imgVan} alt="Van" className="w-full h-56 object-cover" />
+            {/*'loading="lazy"' */}
+            <img src={imgVan} alt="Van" className="w-full h-56 object-cover" loading="lazy" />
             <div className="p-6">
               <h3 className="text-2xl font-semibold">VAN</h3>
               <p className="text-gray-500">Maximum capacity: 8 person</p>
@@ -74,7 +72,8 @@ export default function TransfersResultsPage() {
 
           {/* MINIBUS Card */}
           <div className="bg-gray-50 rounded-lg shadow-md overflow-hidden">
-            <img src={imgMinibus} alt="Minibus" className="w-full h-56 object-cover" />
+            {/* 'loading="lazy"' */}
+            <img src={imgMinibus} alt="Minibus" className="w-full h-56 object-cover" loading="lazy" />
             <div className="p-6">
               <h3 className="text-2xl font-semibold">MINIBUS</h3>
               <p className="text-gray-500">Maximum capacity: 19 person</p>

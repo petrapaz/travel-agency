@@ -37,13 +37,13 @@ export default function TourDetailPage() {
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${tour.image})` }}></div>
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative h-full flex items-center justify-center text-white text-center px-6">
-          {/* ISPRAVAK: Smanjen font za mobilne uređaje */}
+          {/*Smanjen font za mobilne uređaje */}
           <h1 className="font-playfair text-4xl md:text-6xl font-bold">{tour.title}</h1>
         </div>
       </section>
 
       <div className="bg-white">
-        {/* ISPRAVAK: Poboljšan kontejner i responzivni razmaci */}
+        {/*Poboljšan kontejner i responzivni razmaci */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
             

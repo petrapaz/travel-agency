@@ -2,7 +2,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaCheckCircle } from 'react-icons/fa'; // Ikona za potvrdu primitka upita za rez
-import successBg from '../assets/images/adriatic-coast.jpg';
+
+// Uklonjen 'import' za sliku, definiramo je kao string s .webp putanjom.
+const successBg = '/images/adriatic-coast.webp';
 
 export default function BookingSuccessPage() {
   return (

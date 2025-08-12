@@ -4,22 +4,21 @@ import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import { NextArrow, PrevArrow } from '../components/SliderArrows';
 import { IoLocationSharp } from 'react-icons/io5';
-import { toursData } from '../data/tours'; // 1. Importiramo centralizirane podatke
+import { toursData } from '../data/tours';
 
-// Import slika za stranicu
-import heroImg1 from '../assets/images/plitvice.jpg';
-import heroImg2 from '../assets/images/krka.jpg';
-import heroImg3 from '../assets/images/sunset.jpg';
-import imgExplore from '../assets/images/wine-tasting.jpg';
-import imgOrganise from '../assets/images/pula.jpg';
+//Uklonjeni su 'import'-i za slike, definiramo ih kao stringove
+const heroImg1 = '/images/plitvice.webp';
+const heroImg2 = '/images/krka.webp';
+const heroImg3 = '/images/sunset.webp';
+const imgExplore = '/images/wine-tasting.webp';
+const imgOrganise = '/images/pula.webp';
 
-// 2. Koristimo prvih 8 tura iz centraliziranih podataka za donji slider
+//prvih 8 tura iz centraliziranih podataka za donji slider
 const tourOffers = toursData.slice(0, 8);
 
 export default function DayTours() {
   const offerSliderRef = useRef(null);
 
-  // Postavke za hero slider
   const heroSliderSettings = {
     dots: false,
     arrows: false,
@@ -32,7 +31,6 @@ export default function DayTours() {
     slidesToScroll: 1,
   };
   
-  // Postavke za donji slider
   const offerSliderSettings = {
     dots: false,
     infinite: true,
@@ -49,6 +47,7 @@ export default function DayTours() {
 
   return (
     <>
+      {/* Hero sekcija - slike se učitavaju odmah */}
       <section className="h-screen relative overflow-hidden">
         <Slider {...heroSliderSettings} className="absolute top-0 left-0 w-full h-full z-0">
           <div><div className="h-screen bg-cover bg-center" style={{ backgroundImage: `url(${heroImg1})` }}></div></div>
@@ -67,14 +66,16 @@ export default function DayTours() {
       </section>
 
       <div className="bg-white">
-        {/* ... Ovdje ide ostatak sadržaja stranice ... */}
         <section className="container mx-auto px-6 py-20 text-left">
           <h2 className="text-4xl font-light text-gray-800 relative inline-block pb-2">Day Tours<span className="absolute bottom-0 left-0 w-1/4 h-0.5 bg-orange-500"></span></h2>
           <p className="text-gray-500 mt-4 max-w-2xl text-lg">An insight into the incredible experience around Croatia.</p>
         </section>
 
         <section className="container mx-auto px-6 py-16 grid md:grid-cols-2 gap-16 items-center">
-          <div className="rounded-2xl overflow-hidden max-h-[500px]"><img src={imgExplore} alt="Explore more in less time" className="w-full h-full object-cover" /></div>
+          <div className="rounded-2xl overflow-hidden max-h-[500px]">
+            {/* 'loading="lazy"' */}
+            <img src={imgExplore} alt="Explore more in less time" className="w-full h-full object-cover" loading="lazy" />
+          </div>
           <div>
             <h3 className="text-4xl font-light text-gray-800 mb-4">Explore more in less time</h3>
             <p className="text-gray-600 text-lg mb-4">Croatia isn’t just a destination—it’s a collection of unforgettable experiences. If you’re short on time or want to maximize every moment of your trip, day tours are the perfect way to explore this country’s rich history, natural beauty, and coastal charm.</p>
@@ -83,7 +84,10 @@ export default function DayTours() {
         </section>
 
         <section className="container mx-auto px-6 py-16 grid md:grid-cols-2 gap-16 items-center">
-           <div className="md:order-2 rounded-2xl overflow-hidden max-h-[500px]"><img src={imgOrganise} alt="Organise and book in advance" className="w-full h-full object-cover" /></div>
+           <div className="md:order-2 rounded-2xl overflow-hidden max-h-[500px]">
+             {/* 'loading="lazy"' */}
+             <img src={imgOrganise} alt="Organise and book in advance" className="w-full h-full object-cover" loading="lazy" />
+           </div>
           <div className="md:order-1">
             <h3 className="text-4xl font-light text-gray-800 mb-4">Organise and book in advance</h3>
             <p className="text-gray-600 text-lg mb-4">When planning a trip to Croatia, it's easy to get swept up in the excitement of turquoise waters, ancient towns, and lush national parks. But amidst all the beauty, there’s one bit of practical advice that can make or break your experience: book your day tours in advance.</p>
@@ -108,10 +112,10 @@ export default function DayTours() {
               <div className="-mx-2">
                 <Slider ref={offerSliderRef} {...offerSliderSettings}>
                     {tourOffers.map((dest) => (
-                      // 3. ISPRAVAK: Link sada koristi ispravnu putanju
                       <Link to={`/day-tours/tour/${dest.id}`} key={dest.id} className="p-2 block">
                           <div className="relative h-80 rounded-xl overflow-hidden group shadow-lg">
-                              <img src={dest.image} alt={dest.title} className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" />
+                              {/* 'loading="lazy"' */}
+                              <img src={dest.image} alt={dest.title} className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" loading="lazy" />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                               <div className="absolute bottom-0 left-0 p-6 text-white">
                                   <h3 className="text-xl font-semibold">{dest.title}</h3>

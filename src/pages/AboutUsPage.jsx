@@ -3,17 +3,21 @@ import React, { useRef } from 'react';
 import Slider from 'react-slick';
 import { NextArrow, PrevArrow } from '../components/SliderArrows';
 
-// Import slika
-import heroBg from '../assets/images/adriatic-coast.jpg';
-import whoAreWeImg from '../assets/images/mapa.jpg';
-import professionalImg from '../assets/images/taxi.jpg';
-import localsImg from '../assets/images/dalmatian-stone-street.jpg';
-import gallery1 from '../assets/images/dubrovnik-roof.jpg';
-import gallery2 from '../assets/images/jedrilice.jpg';
-import gallery3 from '../assets/images/krka.jpg';
-import gallery4 from '../assets/images/primosten.jpg';
+// Uklonjeni su svi 'import'-i za slike
 
-const galleryImages = [gallery1, gallery2, gallery3, gallery4, heroBg];
+// Ažurirane su putanje do .webp slika
+const heroBg = '/images/adriatic-coast.webp';
+const whoAreWeImg = '/images/mapa.webp';
+const professionalImg = '/images/taxi.webp';
+const localsImg = '/images/dalmatian-stone-street.webp';
+
+const galleryImages = [
+  '/images/dubrovnik-roof.webp', 
+  '/images/jedrilice.webp', 
+  '/images/krka.webp', 
+  '/images/primosten.webp', 
+  '/images/adriatic-coast.webp' // Ponovno koristenje hero sliku
+];
 
 export default function AboutUsPage() {
   const gallerySliderRef = useRef(null);
@@ -22,14 +26,14 @@ export default function AboutUsPage() {
     className: "center",
     centerMode: true,
     infinite: true,
-    centerPadding: "60px", // Koliko se vide susjedne slike
-    slidesToShow: 3, // 3 slike odjednom
+    centerPadding: "60px",
+    slidesToShow: 3,
     speed: 500,
     arrows: false,
     dots: false,
     responsive: [
       {
-        breakpoint: 768, // Na manjim ekranima
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
           centerPadding: "40px",
@@ -40,7 +44,7 @@ export default function AboutUsPage() {
 
   return (
     <>
-      {/* Hero sekcija*/}
+      {/* Hero sekcija - ova slika se učitava odmah */}
       <section className="h-[60vh] relative pt-20">
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${heroBg})` }}></div>
         <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -65,7 +69,8 @@ export default function AboutUsPage() {
         {/* 'Who are we?' sekcija */}
         <section className="container mx-auto px-6 py-12 grid md:grid-cols-2 gap-12 items-center">
           <div className="rounded-2xl overflow-hidden aspect-[4/3]">
-            <img src={whoAreWeImg} alt="Who are we?" className="w-full h-full object-cover" />
+            {/* 'loading="lazy"' */}
+            <img src={whoAreWeImg} alt="Who are we?" className="w-full h-full object-cover" loading="lazy" />
           </div>
           <div>
             <h3 className="text-4xl font-light text-gray-800 mb-4">Who are we?</h3>
@@ -76,7 +81,8 @@ export default function AboutUsPage() {
         {/* 'Professional and Trust-Building' sekcija */}
         <section className="container mx-auto px-6 py-12 grid md:grid-cols-2 gap-12 items-center">
            <div className="md:order-2 rounded-2xl overflow-hidden aspect-[4/3]">
-            <img src={professionalImg} alt="Professional and Trust-Building" className="w-full h-full object-cover" />
+            {/*'loading="lazy"' */}
+            <img src={professionalImg} alt="Professional and Trust-Building" className="w-full h-full object-cover" loading="lazy" />
           </div>
           <div className="md:order-1">
             <h3 className="text-4xl font-light text-gray-800 mb-4">Professional and Trust-Building</h3>
@@ -87,7 +93,8 @@ export default function AboutUsPage() {
         {/* 'Discover Croatia with Locals' sekcija */}
         <section className="container mx-auto px-6 py-12 grid md:grid-cols-2 gap-12 items-center">
           <div className="rounded-2xl overflow-hidden aspect-[4/3]">
-            <img src={localsImg} alt="Discover Croatia with Locals" className="w-full h-full object-cover" />
+            {/* 'loading="lazy"' */}
+            <img src={localsImg} alt="Discover Croatia with Locals" className="w-full h-full object-cover" loading="lazy" />
           </div>
           <div>
             <h3 className="text-4xl font-light text-gray-800 mb-4">Discover Croatia with Locals</h3>
@@ -97,34 +104,33 @@ export default function AboutUsPage() {
 
         {/* Galerija slider */}
         <section className="bg-white py-20 overflow-hidden">
-  <div className="container mx-auto px-6">
-      <div className="flex justify-between items-end mb-8">
-          <div className="text-left">
-              <h2 className="text-4xl font-light text-gray-800 relative inline-block pb-2">
-                Slide through our gallery
-                <span className="absolute bottom-0 left-0 w-1/4 h-0.5 bg-orange-500"></span>
-              </h2>
+          <div className="container mx-auto px-6">
+              <div className="flex justify-between items-end mb-8">
+                  <div className="text-left">
+                      <h2 className="text-4xl font-light text-gray-800 relative inline-block pb-2">
+                        Slide through our gallery
+                        <span className="absolute bottom-0 left-0 w-1/4 h-0.5 bg-orange-500"></span>
+                      </h2>
+                  </div>
+                  <div className="flex space-x-3 items-center">
+                       <PrevArrow onClick={() => gallerySliderRef.current.slickPrev()} />
+                       <NextArrow onClick={() => gallerySliderRef.current.slickNext()} />
+                  </div>
+              </div>
           </div>
-          <div className="flex space-x-3 items-center">
-               <PrevArrow onClick={() => gallerySliderRef.current.slickPrev()} />
-               <NextArrow onClick={() => gallerySliderRef.current.slickNext()} />
+          <div className="gallery-slider -mx-4">
+              <Slider ref={gallerySliderRef} {...gallerySettings}>
+                  {galleryImages.map((image, index) => (
+                    <div key={index} className="px-4">
+                        <div className="h-80 rounded-xl overflow-hidden group">
+                            {/* 'loading="lazy"' */}
+                            <img src={image} alt={`Gallery image ${index + 1}`} className="w-full h-full object-cover" loading="lazy" />
+                        </div>
+                    </div>
+                  ))}
+              </Slider>
           </div>
-      </div>
-  </div>
-
-  {/* Kontejner za slider*/}
-  <div className="gallery-slider -mx-4">
-      <Slider ref={gallerySliderRef} {...gallerySettings}>
-          {galleryImages.map((image, index) => (
-            <div key={index} className="px-4">
-                <div className="h-80 rounded-xl overflow-hidden group">
-                    <img src={image} alt={`Gallery image ${index + 1}`} className="w-full h-full object-cover" />
-                </div>
-            </div>
-          ))}
-      </Slider>
-  </div>
-</section>
+        </section>
       </div>
     </>
   );

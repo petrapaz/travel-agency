@@ -4,10 +4,22 @@ import { Link } from 'react-router-dom';
 import { FiChevronDown } from 'react-icons/fi';
 import { toursData } from '../data/tours';
 
-import heroBg from '../assets/images/dubrovnik.jpg';
+//Uklonjen 'import' za sliku.
+const heroBg = '/images/dubrovnik.webp';
 
-const categories = [ /* ... */ ];
-const sortOptions = [ /* ... */ ];
+const categories = [
+  { key: 'all', name: 'All trips' },
+  { key: 'historic', name: 'Historic' },
+  { key: 'nature', name: 'Nature' },
+  { key: 'family', name: 'Family' },
+  { key: 'food', name: 'Food & Wine' },
+];
+
+const sortOptions = [
+  { key: 'recommended', name: 'Recommended' },
+  { key: 'price-asc', name: 'Price: Low to High' },
+  { key: 'price-desc', name: 'Price: High to Low' },
+];
 
 export default function DayToursList() {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -16,7 +28,6 @@ export default function DayToursList() {
   const [isSortOpen, setIsSortOpen] = useState(false);
 
   const filteredAndSortedTours = useMemo(() => {
-    // ... logika za filtere i sortiranje ostaje ista
     let tours = [...toursData];
     if (selectedCategory !== 'all') {
       tours = tours.filter(tour => tour.category === selectedCategory);
@@ -29,7 +40,7 @@ export default function DayToursList() {
         tours.sort((a, b) => b.price - a.price);
         break;
       case 'recommended':
-        tours.sort((a, b) => b.recommended - a.recommended);
+        tours.sort((a, b) => (b.recommended ? 1 : -1) - (a.recommended ? 1 : -1) || a.price - b.price);
         break;
       default:
         break;
@@ -92,7 +103,10 @@ export default function DayToursList() {
           <div className="grid grid-cols-1 gap-10">
             {filteredAndSortedTours.map((tour) => (
               <Link key={tour.id} to={`/day-tours/tour/${tour.id}`} className="flex flex-col md:flex-row bg-gray-50 rounded-lg shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
-                <div className="md:w-1/3"><img src={tour.image} alt={tour.title} className="w-full h-64 md:h-full object-cover" /></div>
+                <div className="md:w-1/3">
+                  {/*'loading="lazy"' */}
+                  <img src={tour.image} alt={tour.title} className="w-full h-64 md:h-full object-cover" loading="lazy" />
+                </div>
                 <div className="md:w-2/3 p-8 flex flex-col">
                   <h2 className="text-2xl font-semibold text-gray-800 mb-4 h-16 leading-tight group-hover:text-orange-500 transition-colors">{tour.title}</h2>
                   <p className="text-gray-600 mb-6 h-24 overflow-hidden">{tour.description}</p>

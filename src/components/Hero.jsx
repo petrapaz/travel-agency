@@ -2,59 +2,44 @@
 import React from 'react';
 import Slider from 'react-slick';
 
-// 1. Importiramo slike koje ćemo koristiti u pozadini
-import imgDubrovnik from '../assets/images/dubrovnik.jpg';
-import imgJedrilice from '../assets/images/jedrilice.jpg';
-import imgSunset from '../assets/images/sunset.jpg';
-import imgPula from '../assets/images/pula.jpg';
+// Uklonjeni svi 'import'-i za slike.
 
-// za potencijalno dodavanje videa:
-// import videoKrajolik from '../assets/videos/krajolik.mp4';
-
-
-// 2. Podaci za slider
+// Podaci za slider su ažurirani s direktnim putanjama do .webp slika
 const backgroundSlides = [
   {
     type: 'image',
-    path: imgDubrovnik,
+    path: '/images/dubrovnik.webp',
   },
   {
     type: 'image',
-    path: imgJedrilice,
+    path: '/images/jedrilice.webp',
   },
   {
     type: 'image',
-    path: imgSunset,
+    path: '/images/sunset.webp',
   },
   {
     type: 'image',
-    path: imgPula,
+    path: '/images/pula.webp',
   },
-  // {
-  //   type: 'video',
-  //   path: videoKrajolik,
-  // }
 ];
 
 export default function Hero() {
-  // 3. Postavke za pozadinski slider (fade, autoplay, bez strelica)
   const settings = {
     dots: false,
     arrows: false,
     infinite: true,
-    speed: 1500,       // Brzina prijelaza (u ms)
+    speed: 1500,
     autoplay: true,
-    autoplaySpeed: 5000, // Vrijeme prikaza jedne slike (u ms)
-    fade: true,          // Efekt prijelaza - 'fade'
+    autoplaySpeed: 5000,
+    fade: true,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
 
   return (
-    // 4. Glavni kontejner postaje 'relative' da možemo pozicionirati elemente unutar njega
     <section className="h-screen relative overflow-hidden">
       
-      {/* 5. Slider kao apsolutna pozadina koja zauzima cijeli ekran */}
       <Slider {...settings} className="absolute top-0 left-0 w-full h-full z-0">
         {backgroundSlides.map((slide, index) => (
           <div key={index}>
@@ -64,18 +49,10 @@ export default function Hero() {
                 style={{ backgroundImage: `url(${slide.path})` }}
               ></div>
             )}
-            {/* // DODAVANJE VIDEA
-              // Treba imati video u 'assets' folderu
-              {slide.type === 'video' && (
-              <video className="w-full h-full object-cover" autoPlay loop muted>
-                <source src={slide.path} type="video/mp4" />
-              </video>
-            )} */}
           </div>
         ))}
       </Slider>
 
-      {/* 6. Sadržaj (naslov i overlay) preko slidera */}
       <div className="absolute inset-0 bg-black opacity-50 z-10" />
       <div className="relative z-20 h-full flex items-center px-12 text-white max-w-4xl">
         <div>

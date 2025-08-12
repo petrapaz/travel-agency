@@ -2,10 +2,12 @@
 import React from 'react';
 import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
 
-// Import slika
-import heroBg from '../assets/images/jedrilice.jpg';
-import questionsImg from '../assets/images/car-window.jpg';
-import planTripImg from '../assets/images/dalmatian-stone-street.jpg';
+// Uklonjeni su 'import'-i za slike
+
+// Ažurirane su putanje do .webp slika
+const heroBg = '/images/jedrilice.webp';
+const questionsImg = '/images/car-window.webp';
+const planTripImg = '/images/dalmatian-stone-street.webp';
 
 export default function ContactUsPage() {
   const handleSubmit = (event) => {
@@ -16,7 +18,7 @@ export default function ContactUsPage() {
 
   return (
     <>
-      {/* Hero sekcija */}
+      {/* Hero sekcija - ova slika se učitava odmah */}
       <section className="h-screen relative overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${heroBg})` }}></div>
         <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -30,7 +32,6 @@ export default function ContactUsPage() {
       </section>
 
       <div className="bg-white">
-        {/* Uvodni 'Contact Us' naslov */}
         <section className="container mx-auto px-6 pt-20 pb-10 text-left">
           <h2 className="text-4xl font-light text-gray-800 relative inline-block pb-2">
             Contact Us
@@ -42,7 +43,8 @@ export default function ContactUsPage() {
         {/* 'Questions?' sekcija */}
         <section className="container mx-auto px-6 py-12 grid md:grid-cols-2 gap-12 items-center">
           <div className="rounded-2xl overflow-hidden aspect-[4/3]">
-            <img src={questionsImg} alt="Questions?" className="w-full h-full object-cover" />
+            {/* 'loading="lazy"' */}
+            <img src={questionsImg} alt="Questions?" className="w-full h-full object-cover" loading="lazy" />
           </div>
           <div>
             <h3 className="text-4xl font-light text-gray-800 mb-4">Questions?</h3>
@@ -53,7 +55,8 @@ export default function ContactUsPage() {
         {/* 'Plan a Trip' sekcija */}
         <section className="container mx-auto px-6 pt-12 pb-20 grid md:grid-cols-2 gap-12 items-center">
           <div className="md:order-2 rounded-2xl overflow-hidden aspect-[4/3]">
-             <img src={planTripImg} alt="Plan a Trip" className="w-full h-full object-cover" />
+             {/*'loading="lazy"' */}
+             <img src={planTripImg} alt="Plan a Trip" className="w-full h-full object-cover" loading="lazy" />
           </div>
           <div className="md:order-1">
             <h3 className="text-4xl font-light text-gray-800 mb-4">Plan a Trip – Your Ideas, Our Local Expertise</h3>

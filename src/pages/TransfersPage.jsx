@@ -2,15 +2,15 @@
 import React from 'react';
 import TransferSearchForm from '../components/TransferSearchForm';
 
-// Import slika
-import heroBg from '../assets/images/car-window.jpg';
-import imgJourney from '../assets/images/mercedes.jpg';
-import imgFlexible from '../assets/images/departures.jpg';
+// Uklonjeni su 'import'-i za slike, definiramo ih kao stringove s .webp putanjama
+const heroBg = '/images/car-window.webp';
+const imgJourney = '/images/mercedes.webp';
+const imgFlexible = '/images/departures.webp';
 
 export default function TransfersPage() {
   return (
     <>
-      {/* Hero sekcija s formom za pretragu */}
+      {/* Hero sekcija - slika se učitava odmah */}
       <section className="h-screen relative flex items-center justify-center">
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${heroBg})` }}></div>
         <div className="absolute inset-0 bg-black opacity-60"></div>
@@ -34,7 +34,8 @@ export default function TransfersPage() {
 
         <section className="container mx-auto px-6 py-16 grid md:grid-cols-2 gap-16 items-center">
           <div className="rounded-2xl overflow-hidden aspect-[4/3]">
-            <img src={imgJourney} alt="Your Journey, Your Schedule" className="w-full h-full object-cover" />
+            {/*'loading="lazy"' */}
+            <img src={imgJourney} alt="Your Journey, Your Schedule" className="w-full h-full object-cover" loading="lazy" />
           </div>
           <div className="text-left">
             <h3 className="text-3xl font-light text-gray-800 mb-4">Your Journey, Your Schedule</h3>
@@ -48,7 +49,8 @@ export default function TransfersPage() {
 
         <section className="container mx-auto px-6 py-16 grid md:grid-cols-2 gap-16 items-center">
            <div className="md:order-2 rounded-2xl overflow-hidden aspect-[4/3]">
-            <img src={imgFlexible} alt="Fast, Flexible, and Stress-Free" className="w-full h-full object-cover" />
+            {/* 'loading="lazy"' */}
+            <img src={imgFlexible} alt="Fast, Flexible, and Stress-Free" className="w-full h-full object-cover" loading="lazy" />
           </div>
           <div className="md:order-1 text-left">
             <h3 className="text-3xl font-light text-gray-800 mb-4">Fast, Flexible, and Stress-Free</h3>
