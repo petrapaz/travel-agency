@@ -64,24 +64,33 @@ export default function TransferSearchForm() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
+   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
 
-    const results = await calculateTransferPrices(fromLocation, toLocation);
-    setIsLoading(false);
-
-    if (results) {
+    //URL za Netlify funkciju
+    const url = `/api/calculatePrice?origin=${encodeURIComponent(fromLocation)}&destination=${encodeURIComponent(toLocation)}`;
+    
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const results = await response.json();
+      
+      setIsLoading(false);
       navigate('/transfers/results', { 
         state: { 
           results: results,
           from: fromLocation,
           to: toLocation,
           pax: persons,
-          date: date // slanje odabranog datuma na stranicu s rezultatima
+          date: date
         } 
       });
-    } else {
+    } catch (error) {
+      console.error("Failed to calculate prices:", error);
+      setIsLoading(false);
       alert("Failed to calculate prices. Please try again.");
     }
   };
@@ -103,12 +112,11 @@ export default function TransferSearchForm() {
         
         <div className="relative">
            <label htmlFor="date" className="block text-xs font-bold text-gray-500 uppercase">Date</label>
-           {/* ažurirani input za datum */}
            <input 
               type="date" 
               id="date"
               value={date}
-              min={getTodayString()} // onemogućuje odabir prošlih datuma
+              min={getTodayString()}
               onChange={(e) => setDate(e.target.value)}
               className="w-full mt-1 p-2 border-b-2 border-gray-200 focus:outline-none focus:border-orange-500"
             />
