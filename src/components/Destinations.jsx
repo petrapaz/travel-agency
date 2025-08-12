@@ -4,6 +4,8 @@ import Slider from 'react-slick';
 import { IoLocationSharp } from 'react-icons/io5';
 import { NextArrow, PrevArrow } from './SliderArrows';
 
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 //Uklonjeni su svi 'import'-i za slike. 
 // slike se sada učitavaju direktno iz 'public' foldera.
 

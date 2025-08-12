@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import { NextArrow, PrevArrow } from './SliderArrows'; // Importiramo naše custom strelice
 import { toursData } from '../data/tours';
 
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+
 // Filtriramo ture koje su označene kao 'recommended'
 const offers = toursData.filter(tour => tour.recommended);
 

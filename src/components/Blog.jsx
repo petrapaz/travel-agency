@@ -6,6 +6,9 @@ import { FaArrowRight } from 'react-icons/fa';
 import { NextArrow, PrevArrow } from './SliderArrows';
 import { blogPosts } from '../data/blog';
 
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+
 export default function Blog() {
   const settings = {
     dots: true,

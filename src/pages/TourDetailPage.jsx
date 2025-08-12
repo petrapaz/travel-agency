@@ -3,6 +3,10 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { toursData } from '../data/tours';
 import Slider from 'react-slick';
+
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+
 import { NextArrow, PrevArrow } from '../components/SliderArrows';
 
 export default function TourDetailPage() {

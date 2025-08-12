@@ -1,36 +1,43 @@
 // src/pages/DayTours.jsx
-import React, { useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react'; // Dodajemo useState i useEffect
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
+
+// CSS za donji slider ostaje
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+
 import { NextArrow, PrevArrow } from '../components/SliderArrows';
 import { IoLocationSharp } from 'react-icons/io5';
 import { toursData } from '../data/tours';
 
-//Uklonjeni su 'import'-i za slike, definiramo ih kao stringove
-const heroImg1 = '/images/plitvice.webp';
-const heroImg2 = '/images/krka.webp';
-const heroImg3 = '/images/sunset.webp';
+// Slike za lagani hero slider
+const heroSlides = [
+    '/images/plitvice.webp',
+    '/images/krka.webp',
+    '/images/sunset.webp'
+];
+
+// Slike za ostatak stranice
 const imgExplore = '/images/wine-tasting.webp';
 const imgOrganise = '/images/pula.webp';
 
-//prvih 8 tura iz centraliziranih podataka za donji slider
+// Podaci za donji slider (koristi react-slick)
 const tourOffers = toursData.slice(0, 8);
 
 export default function DayTours() {
   const offerSliderRef = useRef(null);
+  const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
 
-  const heroSliderSettings = {
-    dots: false,
-    arrows: false,
-    infinite: true,
-    speed: 1500,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    fade: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-  
+  // Logika za lagani hero slider
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentHeroSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Postavke samo za donji slider
   const offerSliderSettings = {
     dots: false,
     infinite: true,
@@ -47,13 +54,17 @@ export default function DayTours() {
 
   return (
     <>
-      {/* Hero sekcija - slike se učitavaju odmah */}
       <section className="h-screen relative overflow-hidden">
-        <Slider {...heroSliderSettings} className="absolute top-0 left-0 w-full h-full z-0">
-          <div><div className="h-screen bg-cover bg-center" style={{ backgroundImage: `url(${heroImg1})` }}></div></div>
-          <div><div className="h-screen bg-cover bg-center" style={{ backgroundImage: `url(${heroImg2})` }}></div></div>
-          <div><div className="h-screen bg-cover bg-center" style={{ backgroundImage: `url(${heroImg3})` }}></div></div>
-        </Slider>
+        {heroSlides.map((path, index) => (
+            <div
+              key={path}
+              className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000"
+              style={{ 
+                backgroundImage: `url(${path})`,
+                opacity: index === currentHeroSlide ? 1 : 0
+              }}
+            ></div>
+        ))}
         <div className="absolute inset-0 bg-black opacity-50 z-10" />
         <div className="relative z-20 h-full flex items-center px-12 text-white max-w-4xl">
           <div>
@@ -67,15 +78,12 @@ export default function DayTours() {
 
       <div className="bg-white">
         <section className="container mx-auto px-6 py-20 text-left">
-          <h2 className="text-4xl font-light text-gray-800 relative inline-block pb-2">Day Tours<span className="absolute bottom-0 left-0 w-1/4 h-0.5 bg-orange-500"></span></h2>
+          <h2 className="text-4xl font-light text-gray-800 relative inline-block pb-2">Day Tours<span className="absolute bottom-0 left-0 w-3/4 h-0.5 bg-orange-500"></span></h2>
           <p className="text-gray-500 mt-4 max-w-2xl text-lg">An insight into the incredible experience around Croatia.</p>
         </section>
 
         <section className="container mx-auto px-6 py-16 grid md:grid-cols-2 gap-16 items-center">
-          <div className="rounded-2xl overflow-hidden max-h-[500px]">
-            {/* 'loading="lazy"' */}
-            <img src={imgExplore} alt="Explore more in less time" className="w-full h-full object-cover" loading="lazy" />
-          </div>
+          <div className="rounded-2xl overflow-hidden max-h-[500px]"><img src={imgExplore} alt="Explore more in less time" className="w-full h-full object-cover" loading="lazy" /></div>
           <div>
             <h3 className="text-4xl font-light text-gray-800 mb-4">Explore more in less time</h3>
             <p className="text-gray-600 text-lg mb-4">Croatia isn’t just a destination—it’s a collection of unforgettable experiences. If you’re short on time or want to maximize every moment of your trip, day tours are the perfect way to explore this country’s rich history, natural beauty, and coastal charm.</p>
@@ -84,10 +92,7 @@ export default function DayTours() {
         </section>
 
         <section className="container mx-auto px-6 py-16 grid md:grid-cols-2 gap-16 items-center">
-           <div className="md:order-2 rounded-2xl overflow-hidden max-h-[500px]">
-             {/* 'loading="lazy"' */}
-             <img src={imgOrganise} alt="Organise and book in advance" className="w-full h-full object-cover" loading="lazy" />
-           </div>
+           <div className="md:order-2 rounded-2xl overflow-hidden max-h-[500px]"><img src={imgOrganise} alt="Organise and book in advance" className="w-full h-full object-cover" loading="lazy" /></div>
           <div className="md:order-1">
             <h3 className="text-4xl font-light text-gray-800 mb-4">Organise and book in advance</h3>
             <p className="text-gray-600 text-lg mb-4">When planning a trip to Croatia, it's easy to get swept up in the excitement of turquoise waters, ancient towns, and lush national parks. But amidst all the beauty, there’s one bit of practical advice that can make or break your experience: book your day tours in advance.</p>
@@ -114,7 +119,6 @@ export default function DayTours() {
                     {tourOffers.map((dest) => (
                       <Link to={`/day-tours/tour/${dest.id}`} key={dest.id} className="p-2 block">
                           <div className="relative h-80 rounded-xl overflow-hidden group shadow-lg">
-                              {/* 'loading="lazy"' */}
                               <img src={dest.image} alt={dest.title} className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" loading="lazy" />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                               <div className="absolute bottom-0 left-0 p-6 text-white">

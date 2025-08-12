@@ -4,6 +4,8 @@ import Slider from "react-slick";
 import StarRating from './StarRating';
 import { NextArrow, PrevArrow } from './SliderArrows';
 
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 //Uklonjeni 'import'-i za slike avatara.
 
 // Ažurirane putanje do slika avatara u .webp formatu.
