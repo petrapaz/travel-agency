@@ -3,9 +3,9 @@ import React from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 
 //Uklonjeni su 'import'-i za slike, definiramo ih kao stringove s .webp putanjama
-const imgCar = '/images/mercedes.webp';
-const imgVan = '/images/sprinter.webp';
-const imgMinibus = '/images/auto.webp';
+const imgCar = '/images/mercedes.webp';       
+const imgVan = '/images/kombi-renault.webp';   
+const imgMinibus = '/images/sprinter.webp'; 
 
 export default function TransfersResultsPage() {
   const location = useLocation();

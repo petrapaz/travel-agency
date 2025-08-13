@@ -1,6 +1,6 @@
 // src/components/Footer.jsx
 import React from 'react';
-import { Link } from 'react-router-dom'; // 1. Importiramo 'Link' komponentu
+import { Link } from 'react-router-dom';
 import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
 
 export default function Footer() {
@@ -31,9 +31,17 @@ export default function Footer() {
         <div>
           <h3 className="font-semibold mb-4">Information</h3>
           <ul className="space-y-2 text-gray-300 font-light">
-            <li><a href="#" className="hover:text-white">Supports</a></li>
-            <li><a href="#" className="hover:text-white">Terms & Conditions</a></li>
-            <li><a href="#" className="hover:text-white">Privacy</a></li>
+            <li>
+              <a href="/docs/terms-and-conditions.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                Terms & Conditions
+              </a>
+            </li>
+            
+            <li>
+              <a href="/docs/privacy-policy.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                Privacy
+              </a>
+            </li>
           </ul>
         </div>
 
