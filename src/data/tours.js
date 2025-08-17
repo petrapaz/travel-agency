@@ -1,8 +1,5 @@
 // src/data/tours.js
 
-//Uklonjeni su SVI 'import'-i za slike.
-
-//Sve putanje do slika su ažurirane da koriste direktne .webp putanje.
 export const toursData = [
   { 
     id: 'dalmatia-tour', 
@@ -15,7 +12,8 @@ export const toursData = [
     price: 300, 
     image: '/images/split.webp', 
     category: 'historic', 
-    recommended: true 
+    recommended: true,
+    location: 'Dalmatia, Croatia'
   },
   { 
     id: 'krka-sibenik-tour', 
@@ -28,7 +26,8 @@ export const toursData = [
     price: 450, 
     image: '/images/krka.webp', 
     category: 'nature', 
-    recommended: true 
+    recommended: true,
+    location: 'Dalmatia, Croatia'
   },
   { 
     id: 'brac-island-tour', 
@@ -40,7 +39,8 @@ export const toursData = [
     price: 500, 
     image: '/images/brač.webp', 
     category: 'family', 
-    recommended: false 
+    recommended: false,
+    location: 'Brač, Croatia'
   },
   { 
     id: 'dubrovnik-pearl-tour', 
@@ -52,7 +52,8 @@ export const toursData = [
     price: 570, 
     image: '/images/dubrovnik-roof.webp', 
     category: 'historic', 
-    recommended: true 
+    recommended: true,
+    location: 'Dubrovnik, Croatia'
   },
   { 
     id: 'mostar-kravice-tour', 
@@ -64,7 +65,8 @@ export const toursData = [
     price: 550, 
     image: '/images/mostar.webp', 
     category: 'nature', 
-    recommended: false 
+    recommended: false,
+    location: 'Mostar, BiH'
   },
   { 
     id: 'zadar-paklenica-tour', 
@@ -76,7 +78,8 @@ export const toursData = [
     price: 520, 
     image: '/images/zadar.webp', 
     category: 'nature', 
-    recommended: false 
+    recommended: false,
+    location: 'Zadar, Croatia'
   },
   { 
     id: 'aquapark-dalmatia-tour', 
@@ -88,7 +91,8 @@ export const toursData = [
     price: 450, 
     image: '/images/aquapark.webp', 
     category: 'family', 
-    recommended: true 
+    recommended: true,
+    location: 'Dalmatia, Croatia'
   },
   { 
     id: 'primosten-loreto-tour', 
@@ -100,7 +104,8 @@ export const toursData = [
     price: 500, 
     image: '/images/primosten.webp', 
     category: 'food', 
-    recommended: false 
+    recommended: false,
+    location: 'Primošten, Croatia'
   },
   { 
     id: 'cetina-rafting-tour', 
@@ -112,7 +117,8 @@ export const toursData = [
     price: 50, 
     image: '/images/cetina.webp', 
     category: 'family', 
-    recommended: true 
+    recommended: true,
+    location: 'Omiš, Croatia'
   },
   { 
     id: 'imotski-lakes-tour', 
@@ -124,6 +130,7 @@ export const toursData = [
     price: 380, 
     image: '/images/jezero-imotski.webp', 
     category: 'nature', 
-    recommended: false 
+    recommended: false,
+    location: 'Imotski, Croatia'
   },
 ];

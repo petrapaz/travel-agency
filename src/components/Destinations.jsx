@@ -1,15 +1,12 @@
 // src/components/Destinations.jsx
-import React, { useRef } from 'react';
+import React from 'react';
 import Slider from 'react-slick';
 import { IoLocationSharp } from 'react-icons/io5';
 import { NextArrow, PrevArrow } from './SliderArrows';
 
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-//Uklonjeni su svi 'import'-i za slike. 
-// slike se sada učitavaju direktno iz 'public' foldera.
 
-// Ažurirane putanje do slika
 const destinations = [
   { id: 1, title: 'Dubrovnik old town', location: 'Dubrovnik, Croatia', image: '/images/dubrovnik-roof.webp' },
   { id: 2, title: 'Islands Tour', location: 'Dalmatia, Croatia', image: '/images/jedrilice.webp' },
@@ -22,63 +19,67 @@ const destinations = [
 ];
 
 export default function Destinations() {
-  const sliderRef = useRef(null);
-
   const settings = {
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    arrows: false,
+    arrows: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    dotsClass: "slick-dots custom-dots",
     responsive: [
       { breakpoint: 1024, settings: { slidesToShow: 3 } },
-      { breakpoint: 600, settings: { slidesToShow: 2 } },
-      { breakpoint: 480, settings: { slidesToShow: 1 } }
+      { breakpoint: 768, settings: { 
+          slidesToShow: 2,
+          arrows: false
+        } 
+      },
+      { breakpoint: 600, settings: { 
+          slidesToShow: 1,
+          arrows: false 
+        } 
+      }
     ]
   };
 
   return (
-    <section className="container mx-auto px-6 py-20">
-      <div className="flex justify-between items-end mb-8">
-        <div className="text-left">
+    <section className="bg-white py-20">
+      <div className="container mx-auto px-6">
+        <div className="text-left mb-12">
           <h2 className="text-4xl font-light text-gray-800 relative inline-block pb-2">
             Popular Destinations
             <span className="absolute bottom-0 left-0 w-3/4 h-0.5 bg-orange-500"></span>
           </h2>
-          <p className="text-gray-500 mt-2">Most popular destinations in Croatia and near-by.</p>
+          <p className="text-gray-500 mt-4">Most popular destinations in Croatia and near-by.</p>
         </div>
         
-        <div className="flex space-x-3">
-          <PrevArrow onClick={() => sliderRef.current.slickPrev()} />
-          <NextArrow onClick={() => sliderRef.current.slickNext()} />
-        </div>
-      </div>
-      
-      <div className="-mx-2">
-        <Slider ref={sliderRef} {...settings}>
-          {destinations.map((dest) => (
-            <div key={dest.id} className="p-2">
-              <div className="relative h-96 rounded-xl overflow-hidden group shadow-lg">
-                {/* 'loading="lazy"' atribut za bolje performanse */}
-                <img 
-                  src={dest.image} 
-                  alt={dest.title} 
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 p-6 text-white">
-                  <h3 className="text-xl font-semibold">{dest.title}</h3>
-                  <div className="flex items-center mt-2 text-sm">
-                    <IoLocationSharp />
-                    <span className="ml-1">{dest.location}</span>
+        {/* Wrapper za slider s odmakom za strelice */}
+        <div className="relative px-8 md:px-12">
+          <Slider {...settings}>
+            {destinations.map((dest) => (
+              <div key={dest.id} className="p-2">
+                <div className="relative h-96 rounded-xl overflow-hidden group shadow-lg">
+                  <img 
+                    src={dest.image} 
+                    alt={dest.title} 
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 p-6 text-white">
+                    <h3 className="text-xl font-semibold">{dest.title}</h3>
+                    <div className="flex items-center mt-2 text-sm">
+                      <IoLocationSharp />
+                      <span className="ml-1">{dest.location}</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </Slider>
+            ))}
+          </Slider>
+        </div>
       </div>
     </section>
   );

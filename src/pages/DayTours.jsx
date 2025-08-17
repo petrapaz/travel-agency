@@ -1,9 +1,8 @@
 // src/pages/DayTours.jsx
-import React, { useState, useEffect, useRef } from 'react'; // Dodajemo useState i useEffect
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 
-// CSS za donji slider ostaje
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
@@ -11,25 +10,20 @@ import { NextArrow, PrevArrow } from '../components/SliderArrows';
 import { IoLocationSharp } from 'react-icons/io5';
 import { toursData } from '../data/tours';
 
-// Slike za lagani hero slider
 const heroSlides = [
     '/images/plitvice.webp',
     '/images/krka.webp',
     '/images/sunset.webp'
 ];
 
-// Slike za ostatak stranice
 const imgExplore = '/images/wine-tasting.webp';
 const imgOrganise = '/images/pula.webp';
 
-// Podaci za donji slider (koristi react-slick)
 const tourOffers = toursData.slice(0, 8);
 
 export default function DayTours() {
-  const offerSliderRef = useRef(null);
   const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
 
-  // Logika za lagani hero slider
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentHeroSlide((prev) => (prev + 1) % heroSlides.length);
@@ -37,18 +31,32 @@ export default function DayTours() {
     return () => clearInterval(timer);
   }, []);
 
-  // Postavke samo za donji slider
   const offerSliderSettings = {
-    dots: false,
+    dots: true,
+    dotsClass: "slick-dots custom-dots",
     infinite: true,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    arrows: false,
+    arrows: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
     responsive: [
         { breakpoint: 1024, settings: { slidesToShow: 3 } },
-        { breakpoint: 768, settings: { slidesToShow: 2 } },
-        { breakpoint: 600, settings: { slidesToShow: 1 } },
+        { 
+          breakpoint: 768, 
+          settings: { 
+            slidesToShow: 2,
+            arrows: false
+          } 
+        },
+        { 
+          breakpoint: 600, 
+          settings: { 
+            slidesToShow: 1,
+            arrows: false 
+          } 
+        },
     ]
   };
 
@@ -108,14 +116,12 @@ export default function DayTours() {
                       <h2 className="text-4xl font-light text-gray-800">Slide through our Day Tours offer</h2>
                       <p className="text-gray-500 mt-2 text-lg">Most popular destinations in Croatia and near-by.</p>
                   </div>
-                  <div className="flex space-x-3 items-center">
+                  <div className="flex items-center">
                        <Link to="/day-tours/offers" className="text-sm font-semibold text-orange-500 border border-orange-500 rounded-md px-4 py-2 hover:bg-orange-500 hover:text-white transition-colors">View all trips</Link>
-                       <PrevArrow onClick={() => offerSliderRef.current.slickPrev()} />
-                       <NextArrow onClick={() => offerSliderRef.current.slickNext()} />
                   </div>
               </div>
-              <div className="-mx-2">
-                <Slider ref={offerSliderRef} {...offerSliderSettings}>
+              <div className="relative px-8 md:px-12 -mx-2">
+                <Slider {...offerSliderSettings}>
                     {tourOffers.map((dest) => (
                       <Link to={`/day-tours/tour/${dest.id}`} key={dest.id} className="p-2 block">
                           <div className="relative h-80 rounded-xl overflow-hidden group shadow-lg">
