@@ -24,7 +24,7 @@ export default function ReservationPage() {
   const handleSubmit = (event) => {
     event.preventDefault();
     // U pravoj aplikaciji, ovdje bi se slali podaci na server
-    // ovjde samo preusmjeriti na stranicu o uspjehu
+    // ovjde samo preusmjeriti na stranicu o uspjehu slanja zahtjeva
     navigate('/booking-success');
   };
 
