@@ -1,11 +1,10 @@
 // src/api/googleMaps.js
 
-// Svi parametri koje smo definirali ostaju isti
 const a_consumption = 8;
 const v_consumption = 11;
 const m_consumption = 15;
-const fuelPrice = 1.5;
-const driverRate = 12;
+const fuelPrice = 2; //cca 2eur za litru zbog troskova
+const driverRate = 20;
 const a_tollRate = 0.07;
 const v_m_tollRate = 0.11;
 const a_basePrice = 29;
@@ -13,7 +12,7 @@ const v_basePrice = 46;
 const m_basePrice = 65;
 
 export async function calculateTransferPrices(origin, destination) {
-  // Dohvaćamo vaš API ključ iz .env datoteke
+  // Dohvaćamo API ključ iz .env datoteke
   const apiKey = import.meta.env.VITE_Maps_API_KEY;
   
   // Kreiramo URL za upit Google Directions API-ju
@@ -36,13 +35,12 @@ export async function calculateTransferPrices(origin, destination) {
     const distanceKm = leg.distance.value / 1000; // Udaljenost u km
     const durationMinutes = leg.duration.value / 60; // Trajanje u minutama
 
-    // Ovdje možemo dodati logiku za procjenu koji dio rute je autocesta,
-    // ali za sada ćemo pretpostaviti da je 80% dugih ruta autocesta.
+    // za sada pretpostavka da je 80% dugih ruta autocesta.
     const tollDistanceKm = distanceKm > 100 ? distanceKm * 0.8 : 0;
 
     // Funkcija za izračun cijene po vozilu (ista kao i prije)
     const getPrice = (consumption, basePrice, tollRate) => {
-      // Računamo troškove za DVA smjera (povratno putovanje)
+      // Računamo troškove za dva smjera (povratno putovanje)
       const roundTripDistance = distanceKm * 2;
       const roundTripDurationHours = (durationMinutes * 2) / 60;
       
