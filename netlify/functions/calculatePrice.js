@@ -3,8 +3,8 @@
 const a_consumption = 8;
 const v_consumption = 11;
 const m_consumption = 15;
-const fuelPrice = 1.5;
-const driverRate = 12;
+const fuelPrice = 2;
+const driverRate = 20;
 const a_tollRate = 0.07;
 const v_m_tollRate = 0.11;
 const a_basePrice = 29;
@@ -13,7 +13,7 @@ const m_basePrice = 65;
 
 exports.handler = async function(event) {
   const { origin, destination } = event.queryStringParameters;
-  const apiKey = process.env.VITE_Maps_API_KEY; // Funkcija sigurno pristupa ključu
+  const apiKey = process.env.VITE_Maps_API_KEY;
 
   const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&key=${apiKey}`;
 
@@ -21,8 +21,12 @@ exports.handler = async function(event) {
     const response = await fetch(url);
     const data = await response.json();
 
-    if (data.status !== 'OK') {
-      throw new Error(data.error_message || 'Google Maps API Error');
+    if (data.status !== 'OK' || data.routes.length === 0) {
+      // Sada će se ispravno zaustaviti i vratiti odgovor
+      return {
+        statusCode: 404,
+        body: JSON.stringify({ error: 'No route found for the given locations.' }),
+      };
     }
 
     const leg = data.routes[0].legs[0];

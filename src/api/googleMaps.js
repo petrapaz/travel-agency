@@ -16,7 +16,7 @@ export async function calculateTransferPrices(origin, destination) {
   const apiKey = import.meta.env.VITE_Maps_API_KEY;
   
   // Kreiramo URL za upit Google Directions API-ju
-  const url = `/maps-api/maps/api/directions/json?origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&key=${apiKey}`;
+  const url = `/.netlify/functions/calculatePrice?origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}`;
 
   try {
     // Šaljemo stvarni upit na Google Maps
